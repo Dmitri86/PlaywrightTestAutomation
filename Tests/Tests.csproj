@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Stages\Steps.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
+using Steps;
 
 namespace Tests
 {
@@ -7,15 +8,14 @@ namespace Tests
     public class FirstTest : AbstractTest
     {
         [Test]
-        public async Task VerifyHomeUrl()
+        public void VerifyHomeUrl()
         {
             const string expectedUrl = "https://skyup.aero";
 
-            var page = await BrowserContext.NewPageAsync();
-            await page.GotoAsync("/");
-            var actualUrl = page.Url;
-            Assert.IsTrue(actualUrl.StartsWith(expectedUrl),
-                $"The link [{actualUrl}] doesn't start with [{expectedUrl}]");
+            new HomePageStep()
+                .InitPage(BrowserContext)
+                .GoToPage("/")
+                .VerifyUrlStartWith(expectedUrl);
         }
     }
 }

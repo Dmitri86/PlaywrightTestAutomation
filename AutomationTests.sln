@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pages", "Pages\Pages.csproj", "{D5DDBD5C-8D56-4B85-8117-81EEB8848973}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stapes", "Stages\Stapes.csproj", "{D3B73DA7-A5BF-4BA0-ABF9-AE17B8A15B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Steps", "Stages\Steps.csproj", "{D3B73DA7-A5BF-4BA0-ABF9-AE17B8A15B44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{9A42D143-3437-4972-A99B-6C92B5F1F0D9}"
 EndProject

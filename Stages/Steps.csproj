@@ -7,4 +7,9 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Playwright" Version="1.23.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+  </ItemGroup>
+
 </Project>
