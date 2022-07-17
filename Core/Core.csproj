@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.23.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controls\Elements\" />
+  </ItemGroup>
+
 </Project>

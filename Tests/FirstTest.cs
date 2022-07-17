@@ -13,10 +13,9 @@ namespace Tests
         {
             const string expectedUrl = "https://skyup.aero";
 
-            TestStepContext<HomeStepContext>.Instance
-                .InitPage(BrowserContext)
-                .GoToPage("/")
-                .VerifyUrlStartWith(expectedUrl);
+            var homeSteps = new HomeStepContext(Page);
+            homeSteps.GoToPage("/");
+            homeSteps.VerifyUrlStartWith(expectedUrl);
         }
     }
 }

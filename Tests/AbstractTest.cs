@@ -7,10 +7,11 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class AbstractTest
     {
         protected IBrowserContext BrowserContext;
+        protected IPage Page;
         private IBrowser _browser;
         private static IConfiguration _configs;
 
@@ -20,6 +21,9 @@ namespace Tests
             _configs = InitSettings();
             _browser = await BrowserFactory.GetInstance()
                 .GetBrowserAsync(new BrowserSettings(_configs.GetSection("browser")));
+            var options = InitContextOptions();
+            BrowserContext =
+                await _browser.NewContextAsync(options);
         }
 
 
@@ -32,9 +36,7 @@ namespace Tests
         [SetUp]
         public async Task SetUp()
         {
-            var options = InitContextOptions();
-            BrowserContext =
-                await _browser.NewContextAsync(options);
+            Page = await BrowserContext.NewPageAsync();
         }
 
         private static IConfiguration InitSettings()

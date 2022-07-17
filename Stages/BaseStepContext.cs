@@ -4,24 +4,22 @@ using NUnit.Framework;
 
 namespace StepsContext
 {
-    public class BaseStepContext : TestStepContext<BaseStepContext>
+    public abstract class BaseStepContext
     {
-        protected IBrowserContext BrowserContext;
         protected IPage Page;
+
+        protected BaseStepContext(IPage page)
+        {
+            Page = page;
+        }
+
 
         #region Actions
 
-        public BaseStepContext InitPage(IBrowserContext browserContext)
-        {
-            BrowserContext = browserContext;
-            Page = BrowserContext.NewPageAsync().Result;
-            return this;
-        }
 
-        public BaseStepContext GoToPage(string url)
+        public void GoToPage(string url)
         {
             Page.GotoAsync(url).GetAwaiter().GetResult();
-            return this;
         }
 
         #endregion
@@ -29,12 +27,11 @@ namespace StepsContext
 
         #region Verification
 
-        public BaseStepContext VerifyUrlStartWith(string expectedUrl)
+        public void VerifyUrlStartWith(string expectedUrl)
         {
             var actualUrl = Page.Url;
             Assert.IsTrue(actualUrl.StartsWith(expectedUrl),
                 $"The link [{actualUrl}] doesn't start with [{expectedUrl}]");
-            return this;
         }
 
         #endregion
