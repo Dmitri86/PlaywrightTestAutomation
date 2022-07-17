@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Core;
 using NUnit.Framework;
-using Steps;
+using StepsContext;
 
 namespace Tests
 {
@@ -12,7 +13,7 @@ namespace Tests
         {
             const string expectedUrl = "https://skyup.aero";
 
-            new HomePageStep()
+            TestStepContext<HomeStepContext>.Instance
                 .InitPage(BrowserContext)
                 .GoToPage("/")
                 .VerifyUrlStartWith(expectedUrl);

@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\Stages\Steps.csproj" />
+    <ProjectReference Include="..\Stages\StepsContext.csproj" />
   </ItemGroup>
 
   <ItemGroup>

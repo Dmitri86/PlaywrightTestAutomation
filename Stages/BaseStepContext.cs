@@ -1,24 +1,24 @@
-﻿using System.Threading.Tasks;
+﻿using Core;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
-namespace Steps
+namespace StepsContext
 {
-    public abstract class BaseStep
+    public class BaseStepContext : TestStepContext<BaseStepContext>
     {
         protected IBrowserContext BrowserContext;
         protected IPage Page;
 
         #region Actions
 
-        public BaseStep InitPage(IBrowserContext browserContext)
+        public BaseStepContext InitPage(IBrowserContext browserContext)
         {
             BrowserContext = browserContext;
             Page = BrowserContext.NewPageAsync().Result;
             return this;
         }
 
-        public BaseStep GoToPage(string url)
+        public BaseStepContext GoToPage(string url)
         {
             Page.GotoAsync(url).GetAwaiter().GetResult();
             return this;
@@ -29,7 +29,7 @@ namespace Steps
 
         #region Verification
 
-        public BaseStep VerifyUrlStartWith(string expectedUrl)
+        public BaseStepContext VerifyUrlStartWith(string expectedUrl)
         {
             var actualUrl = Page.Url;
             Assert.IsTrue(actualUrl.StartsWith(expectedUrl),
