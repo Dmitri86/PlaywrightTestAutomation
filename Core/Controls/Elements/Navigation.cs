@@ -18,9 +18,9 @@ namespace Core.Controls.Elements
             return items.Select(el => el.Trim());
         }
 
-        public IMenuItem GetItemByText(string text)
+        public IButton GetItemByText(string text)
         {
-            return new MenuItem(Locator.Filter(new LocatorFilterOptions {HasTextString = text}));
+            return new Button(Locator.Filter(new LocatorFilterOptions {HasTextString = text}));
         }
     }
 }

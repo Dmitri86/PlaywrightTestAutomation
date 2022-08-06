@@ -5,6 +5,7 @@ using StepsContext;
 
 namespace Tests
 {
+    [TestFixture]
     public class CareerTest : AbstractTest
     {
         [Test]
