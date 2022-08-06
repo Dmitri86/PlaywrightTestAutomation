@@ -1,6 +1,6 @@
-﻿using Core;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace StepsContext
 {
@@ -13,13 +13,13 @@ namespace StepsContext
             Page = page;
         }
 
-
         #region Actions
 
 
-        public void GoToPage(string url)
+        public Task GoToPage(string url = "")
         {
-            Page.GotoAsync(url).GetAwaiter().GetResult();
+            url = string.IsNullOrEmpty(url) ? "/" : url;
+            return Page.GotoAsync(url);
         }
 
         #endregion

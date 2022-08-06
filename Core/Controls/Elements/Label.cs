@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Controls.Interfaces;
 using Microsoft.Playwright;
 
@@ -13,6 +14,12 @@ namespace Core.Controls.Elements
         public Task<string> GetText()
         {
             return Locator.TextContentAsync();
+        }
+
+        public Task<IReadOnlyList<string>> GetTexts()
+        {
+
+            return Locator.AllTextContentsAsync();
         }
     }
 }

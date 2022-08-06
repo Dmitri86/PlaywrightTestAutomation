@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using StepsContext;
 
 namespace Tests
@@ -7,12 +8,13 @@ namespace Tests
     public class SupportPopUpTest : AbstractTest
     {
         [Test]
-        public void VerifyPopUpVisible()
+        public async Task VerifyPopUpVisible()
         {
             var homeContext = new HomeStepContext(Page);
-            homeContext.GoToPage("/");
             var supportContext = new SupportStepContext(Page);
-            supportContext.VerifyButtonSupportVisible();
+
+            await homeContext.GoToPage();
+            await supportContext.VerifyButtonSupportVisible();
         }
     }
 }

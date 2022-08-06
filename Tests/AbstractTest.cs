@@ -7,7 +7,6 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    [Parallelizable(ParallelScope.All)]
     public class AbstractTest
     {
         protected IBrowserContext BrowserContext;
@@ -37,6 +36,12 @@ namespace Tests
         public async Task SetUp()
         {
             Page = await BrowserContext.NewPageAsync();
+        }
+
+        [TearDown]
+        public async Task TearDown()
+        {
+            await Page.CloseAsync();
         }
 
         private static IConfiguration InitSettings()

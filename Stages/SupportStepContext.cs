@@ -1,4 +1,5 @@
-﻿using Microsoft.Playwright;
+﻿using System.Threading.Tasks;
+using Microsoft.Playwright;
 using NUnit.Framework;
 using Pages;
 
@@ -13,14 +14,18 @@ namespace StepsContext
             _supportPage = new SupportPage(Page);
         }
 
-        public void ClickXButton()
+        public async Task ClickXButton()
         {
-            _supportPage.XButton.Click().GetAwaiter().GetResult();
+            var isVisible = await _supportPage.XButton.IsVisible();
+            if (isVisible)
+            {
+                await _supportPage.XButton.Click();
+            }
         }
 
-        public void VerifyButtonSupportVisible(bool expected = true)
+        public async Task VerifyButtonSupportVisible(bool expected = true)
         {
-            var actual = _supportPage.SupportButton.IsVisible().GetAwaiter().GetResult();
+            var actual = await _supportPage.SupportButton.IsVisible();
             Assert.AreEqual(expected, actual, "Verify button Support is visible");
         }
     }
