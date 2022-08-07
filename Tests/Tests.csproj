@@ -15,6 +15,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.3.0-alpha-net7.4" />
+    <PackageReference Include="ReportPortal.Log4Net" Version="2.0.0" />
+    <PackageReference Include="ReportPortal.NUnit" Version="4.3.4" />
   </ItemGroup>
 
   <ItemGroup>

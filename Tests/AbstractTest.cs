@@ -4,6 +4,7 @@ using Core.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Playwright;
 using NUnit.Framework;
+using ReportPortal.Shared;
 
 namespace Tests
 {
@@ -18,11 +19,7 @@ namespace Tests
         public async Task OneTimeSetUp()
         {
             _configs = InitSettings();
-            _browser = await BrowserFactory.GetInstance()
-                .GetBrowserAsync(new BrowserSettings(_configs.GetSection("browser")));
-            var options = InitContextOptions();
-            BrowserContext =
-                await _browser.NewContextAsync(options);
+            await InitBrowserSettings(_configs);
         }
 
 
@@ -35,6 +32,7 @@ namespace Tests
         [SetUp]
         public async Task SetUp()
         {
+            Context.Current.Log.Trace("Start SetUp");
             Page = await BrowserContext.NewPageAsync();
         }
 
@@ -49,6 +47,20 @@ namespace Tests
             var configs = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true)
                 .Build();
             return configs.GetSection("settings");
+        }
+
+        private async Task InitBrowserSettings(IConfiguration configuration)
+        {
+            var browserSettings = new BrowserSettings(_configs.GetSection("browser"));
+            Context.Current.Log.Info($"Browser type - [{browserSettings.Type}]");
+            _browser = await BrowserFactory.GetInstance()
+                .GetBrowserAsync(browserSettings);
+            var options = InitContextOptions();
+            Context.Current.Log.Info(
+                $"Browser options - [ViewPort - {options.ViewportSize?.Width}:{options.ViewportSize?.Height}]" +
+                $"[BaseUrl - [{options.BaseURL}]");
+            BrowserContext =
+                await _browser.NewContextAsync(options);
         }
 
         private static BrowserNewContextOptions InitContextOptions()

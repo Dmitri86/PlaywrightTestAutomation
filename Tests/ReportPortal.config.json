@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "server": {
+    "url": "http://localhost:8080",
+    "project": "SkyUp",
+    "authentication": {
+      "uuid": "9e8a2ab9-2020-492d-8261-2ba2ad2d5bc3"
+    }
+  },
+  "launch": {
+    "name": "LocalRun",
+    "description": "this is description",
+    "debugMode": true,
+    "attributes": [],
+    "tags":  [] 
+    }
+}
