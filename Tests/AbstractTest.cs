@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using Core.BrowserFactory;
+﻿using Core.BrowserFactory;
 using Core.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Playwright;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using ReportPortal.Shared;
+using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -39,6 +40,11 @@ namespace Tests
         [TearDown]
         public async Task TearDown()
         {
+            var res = TestContext.CurrentContext.Result.Outcome;
+            if (res.Equals(ResultState.Failure) || res.Equals(ResultState.Error))
+            {
+                await TakeScreenShot();
+            }
             await Page.CloseAsync();
         }
 
@@ -70,6 +76,12 @@ namespace Tests
                 .BaseUrl()
                 .ViewPortSize()
                 .Build();
+        }
+
+        private async Task TakeScreenShot()
+        {
+            var bytes = await Page.ScreenshotAsync();
+            Context.Current.Log.Context.Log.Error("screenshots", "image/png", bytes);
         }
     }
 }
