@@ -10,7 +10,7 @@ namespace Core.Settings
 
         public ContextOptionsBuilder(IConfiguration configurationSection)
         {
-            _options = new BrowserNewContextOptions();
+            _options = new BrowserNewContextOptions{Locale = "en-EN" };
             _configuration = configurationSection;
         }
 
