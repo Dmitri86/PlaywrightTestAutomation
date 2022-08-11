@@ -58,13 +58,13 @@ namespace Tests
         private async Task InitBrowserSettings(IConfiguration configuration)
         {
             var browserSettings = new BrowserSettings(_configs.GetSection("browser"));
-            Context.Current.Log.Info($"Browser type - [{browserSettings.Type}]");
+            //Context.Current.Log.Info($"Browser type - [{browserSettings.Type}]");
             _browser = await BrowserFactory.GetInstance()
                 .GetBrowserAsync(browserSettings);
             var options = InitContextOptions();
-            Context.Current.Log.Info(
-                $"Browser options - [ViewPort - {options.ViewportSize?.Width}:{options.ViewportSize?.Height}]" +
-                $"[BaseUrl - [{options.BaseURL}]");
+            //Context.Current.Log.Info(
+                //$"Browser options - [ViewPort - {options.ViewportSize?.Width}:{options.ViewportSize?.Height}]" +
+                //$"[BaseUrl - [{options.BaseURL}]");
             BrowserContext =
                 await _browser.NewContextAsync(options);
         }
